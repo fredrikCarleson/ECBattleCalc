@@ -4,10 +4,10 @@ public class Lesser {
     public String[] names = new String[]  {"Crusaders", "Amra", "Rip Lizards", "Hatchlings", "Mud Wretches", "Glows","Blood Glow", "Moon Glow", "Dark Glow","Doom Glow"};
     int CRUSADER = 0, AMRA = 1, RIP_LIZARD = 2, HATCHLING = 3, MUD_WRETCH = 4, GLOW = 5, BLOOD_GLOW = 6, MOON_GLOW = 7, DARK_GLOW = 8, DOOM_GLOW = 9;
 
-    public int OF = 0;
-    public int DF = 0;
-    public int ATT = 0;
-    public String name = "";
+    public int OF;
+    public int DF;
+    public int ATT;
+    public String name;
 
     public Lesser (int lesserLevel) {
 

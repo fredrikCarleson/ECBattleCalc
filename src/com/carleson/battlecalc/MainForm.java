@@ -16,7 +16,6 @@ public class MainForm {
     private JComboBox ddCastBy;
     private JLabel lblCastBy;
     private JButton fightButton;
-    private JButton resetButton;
     private JTextArea taResult;
     private JComboBox ddForm1;
     private JTextField tfHealth1;
@@ -38,6 +37,8 @@ public class MainForm {
     private JTextField tfHealth3_2;
     private JPanel panelBorder;
     private JPanel pnlPlayer2;
+    private JLabel lblBattleType;
+    private JComboBox cbCalcTyoe;
 
 
     public MainForm() {
@@ -77,6 +78,19 @@ public class MainForm {
                 String spell = ddSpellInEffect.getSelectedItem().toString();
                 int lesserLevel1 = Integer.parseInt(ddBlackBetweens.getSelectedItem().toString());
                 int lesserLevel2 = Integer.parseInt(ddBlackBetweens2.getSelectedItem().toString());
+                String battleType = "calculated";
+
+                switch (cbCalcTyoe.getSelectedItem().toString()) {
+                    case "Deterministic (calculated)":
+                        battleType = "calculated";
+                        break;
+                    case "Statistical (100 rounds)":
+                        battleType = "statistical";
+                        break;
+                    case "Non-Deterministic (Simulated)":
+                        battleType = "simulated";
+                        break;
+                }
 
                 // get data from form to send to calculator
                 ArrayList<Form> Army1Form = new ArrayList<Form>();
@@ -106,7 +120,13 @@ public class MainForm {
                 boolean fortress1Checked = fortCheckBox.isSelected();
                 boolean fortress2Checked = fortCheckBox2.isSelected();
 
-                calc.fight(spellCaster, spell, lesserLevel1, lesserLevel2, Army1Form, Army2Form, army1Lessers, army2Lessers, fortress1Checked, fortress2Checked, taResult);
+                if (battleType.equals("statistical")) {
+                    calc.calcStat(100, spellCaster, spell, lesserLevel1, lesserLevel2, Army1Form, Army2Form, army1Lessers, army2Lessers, fortress1Checked, fortress2Checked, taResult, battleType);
+                } else {
+                    calc.fight(spellCaster, spell, lesserLevel1, lesserLevel2, Army1Form, Army2Form, army1Lessers, army2Lessers, fortress1Checked, fortress2Checked, taResult, battleType);
+                }
+
+
             }
         });
 
