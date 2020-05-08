@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.carleson.battlecalc.MainForm">
+  <grid id="27dc6" binding="pnlContainer" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+    <constraints>
+      <xy x="48" y="14" width="781" height="519"/>
+    </constraints>
+    <properties>
+      <autoscrolls value="true"/>
+      <background color="-16777216"/>
+      <minimumSize width="699" height="500"/>
+      <preferredSize width="699" height="510"/>
+    </properties>
+    <border type="bevel-lowered" title="Evil Carles Battle Calculator" title-position="1">
+      <font name="Cooper Black" size="18"/>
+      <title-color color="-131249"/>
+      <color color="-44657"/>
+    </border>
+    <children>
+      <grid id="7fb5e" binding="panelBorder" layout-manager="BorderLayout" hgap="3" vgap="3">
+        <constraints/>
+        <properties/>
+        <border type="none">
+          <title-color color="-1"/>
+        </border>
+        <children>
+          <grid id="89c61" binding="pnlPlayerOne" layout-manager="GridLayoutManager" row-count="6" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="5" vgap="5">
+            <margin top="2" left="2" bottom="2" right="2"/>
+            <constraints border-constraint="West"/>
+            <properties>
+              <autoscrolls value="false"/>
+              <background color="-1906433"/>
+              <foreground color="-1"/>
+            </properties>
+            <border type="none" title="Player one">
+              <color color="-1"/>
+            </border>
+            <children>
+              <component id="b0847" class="javax.swing.JLabel" binding="lblLessersLeft">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Lessers"/>
+                </properties>
+              </component>
+              <component id="e2b48" class="javax.swing.JTextField" binding="tfLessers">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="0"/>
+                </properties>
+              </component>
+              <component id="8659f" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Forms"/>
+                </properties>
+              </component>
+              <component id="a2974" class="javax.swing.JComboBox" binding="ddForm1">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="Select"/>
+                    <item value="Amber Dragon"/>
+                    <item value="Black Dragon"/>
+                    <item value="Colossa"/>
+                    <item value="Iron Hulk"/>
+                    <item value="Magma Demon"/>
+                    <item value="Wooden"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="3fe80" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Health:"/>
+                </properties>
+              </component>
+              <component id="cac13" class="javax.swing.JTextField" binding="tfHealth1">
+                <constraints>
+                  <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="0"/>
+                </properties>
+              </component>
+              <component id="84950" class="javax.swing.JComboBox" binding="ddBlackBetweens">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="0"/>
+                    <item value="1"/>
+                    <item value="2"/>
+                    <item value="3"/>
+                    <item value="4"/>
+                    <item value="5"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="23f4d" class="javax.swing.JLabel" binding="lblBBLeft">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Black Betweens"/>
+                </properties>
+              </component>
+              <component id="e1015" class="javax.swing.JComboBox" binding="ddForm2">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="Select"/>
+                    <item value="Amber Dragon"/>
+                    <item value="Black Dragon"/>
+                    <item value="Colossa"/>
+                    <item value="Iron Hulk"/>
+                    <item value="Magma Demon"/>
+                    <item value="Wooden"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="a8ebd" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Health:"/>
+                </properties>
+              </component>
+              <component id="5119" class="javax.swing.JTextField" binding="tfHealth2">
+                <constraints>
+                  <grid row="4" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="0"/>
+                </properties>
+              </component>
+              <component id="cf2ed" class="javax.swing.JComboBox" binding="ddForm3">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="Select"/>
+                    <item value="Amber Dragon"/>
+                    <item value="Black Dragon"/>
+                    <item value="Colossa"/>
+                    <item value="Iron Hulk"/>
+                    <item value="Magma Demon"/>
+                    <item value="Wooden"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="9fd08" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Health:"/>
+                </properties>
+              </component>
+              <component id="d2df5" class="javax.swing.JTextField" binding="tfHealth3">
+                <constraints>
+                  <grid row="5" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="0"/>
+                </properties>
+              </component>
+              <component id="f0f42" class="javax.swing.JCheckBox" binding="fortCheckBox" default-binding="true">
+                <constraints>
+                  <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Fort?"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="31228" binding="pnlResults" layout-manager="GridLayoutManager" row-count="8" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="5" vgap="5">
+            <margin top="2" left="2" bottom="2" right="2"/>
+            <constraints border-constraint="South"/>
+            <properties>
+              <background color="-13586689"/>
+            </properties>
+            <border type="none" title="Results">
+              <font/>
+            </border>
+            <children>
+              <component id="177bd" class="javax.swing.JComboBox" binding="ddCastBy">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="Attacker"/>
+                    <item value="Defender"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="7b3ca" class="javax.swing.JLabel" binding="lblCastBy">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Cast by"/>
+                </properties>
+              </component>
+              <component id="68547" class="javax.swing.JButton" binding="fightButton" default-binding="true">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Fight"/>
+                </properties>
+              </component>
+              <component id="e8ff6" class="javax.swing.JButton" binding="resetButton" default-binding="true">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Reset"/>
+                </properties>
+              </component>
+              <component id="96367" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Spell in effect"/>
+                </properties>
+              </component>
+              <component id="f8a3b" class="javax.swing.JComboBox" binding="ddSpellInEffect">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="No Spell"/>
+                    <item value="Battery Club (65)"/>
+                    <item value="Garanapult (30)"/>
+                    <item value="RotoMangler (90)"/>
+                    <item value="SawTooth (30)"/>
+                    <item value="Spiral Deflector (50)"/>
+                    <item value="The Jaws of Life (150)"/>
+                    <item value="Axe of Nergal (40)"/>
+                    <item value="Diablo Spear (50)"/>
+                    <item value="Head of Nergal (25)"/>
+                    <item value="Karash Backwards (80)"/>
+                    <item value="Raw Knuckle (25)"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="4c050" class="javax.swing.JTextArea" binding="taResult">
+                <constraints>
+                  <grid row="0" column="1" row-span="8" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <lineWrap value="true"/>
+                  <preferredSize width="477" height="180"/>
+                  <requestFocusEnabled value="false"/>
+                  <rows value="10"/>
+                  <text value="Result will show here"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="b546" binding="pnlPlayer2" layout-manager="GridLayoutManager" row-count="6" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="5" vgap="5">
+            <margin top="2" left="2" bottom="2" right="2"/>
+            <constraints border-constraint="East"/>
+            <properties>
+              <background color="-43187"/>
+              <foreground color="-1"/>
+            </properties>
+            <border type="none" title="Player two">
+              <color color="-1"/>
+            </border>
+            <children>
+              <component id="37a75" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Lessers"/>
+                </properties>
+              </component>
+              <component id="b44c" class="javax.swing.JTextField" binding="tfLessers2">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="0"/>
+                </properties>
+              </component>
+              <component id="83d59" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Forms"/>
+                </properties>
+              </component>
+              <component id="54e0e" class="javax.swing.JComboBox" binding="ddForm1_2">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="Select"/>
+                    <item value="Amber Dragon"/>
+                    <item value="Black Dragon"/>
+                    <item value="Colossa"/>
+                    <item value="Iron Hulk"/>
+                    <item value="Magma Demon"/>
+                    <item value="Wooden"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="7684d" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Health:"/>
+                </properties>
+              </component>
+              <component id="fb602" class="javax.swing.JTextField" binding="tfHealth1_2">
+                <constraints>
+                  <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="0"/>
+                </properties>
+              </component>
+              <component id="8a312" class="javax.swing.JComboBox" binding="ddBlackBetweens2">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="0"/>
+                    <item value="1"/>
+                    <item value="2"/>
+                    <item value="3"/>
+                    <item value="4"/>
+                    <item value="5"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="663e2" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Black Betweens"/>
+                </properties>
+              </component>
+              <component id="dbeeb" class="javax.swing.JComboBox" binding="ddForm2_2">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="Select"/>
+                    <item value="Amber Dragon"/>
+                    <item value="Black Dragon"/>
+                    <item value="Colossa"/>
+                    <item value="Iron Hulk"/>
+                    <item value="Magma Demon"/>
+                    <item value="Wooden"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="d3fec" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Health:"/>
+                </properties>
+              </component>
+              <component id="f9443" class="javax.swing.JTextField" binding="tfHealth2_2">
+                <constraints>
+                  <grid row="4" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="0"/>
+                </properties>
+              </component>
+              <component id="11c6a" class="javax.swing.JComboBox" binding="ddForm3_2">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="Select"/>
+                    <item value="Amber Dragon"/>
+                    <item value="Black Dragon"/>
+                    <item value="Colossa"/>
+                    <item value="Iron Hulk"/>
+                    <item value="Magma Demon"/>
+                    <item value="Wooden"/>
+                  </model>
+                </properties>
+              </component>
+              <component id="7df1d" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Health:"/>
+                </properties>
+              </component>
+              <component id="516ce" class="javax.swing.JTextField" binding="tfHealth3_2">
+                <constraints>
+                  <grid row="5" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="0"/>
+                </properties>
+              </component>
+              <component id="4c62b" class="javax.swing.JCheckBox" binding="fortCheckBox2">
+                <constraints>
+                  <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Fort?"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+  <inspectionSuppressions>
+    <suppress inspection="I18nForm" id="89c61"/>
+  </inspectionSuppressions>
+</form>
