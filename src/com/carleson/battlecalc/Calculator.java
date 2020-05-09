@@ -1,5 +1,7 @@
 package com.carleson.battlecalc;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
@@ -97,14 +99,15 @@ public class Calculator {
         return Math.floor((high - low + 1) * x) + low;
     }
 
-    public int eAttack(Army army) {
+    public int eAttack(@NotNull Army army) {
         int totalHits;
         army.lesserHits = 0;
 
         if (army.numLessers > 0) {
-            army.lesserHits = army.numLessers * army.lesser.OF / 100 * army.lesser.ATT;
+            // needed to add rounding in the case with calcs with low numbers suchs as 2 lessers
+            army.lesserHits = (int)Math.round(army.numLessers * army.lesser.OF / 100)* army.lesser.ATT;
         }
-        totalHits = army.lesserHits;
+        totalHits = (int)army.lesserHits;
         System.out.println("eAttack - lesserHits: " + army.lesserHits);
 
 
@@ -122,7 +125,7 @@ public class Calculator {
 
 
     public int armySize(Army army) {
-        int totalSize = army.numLessers;
+        int totalSize = (int)army.numLessers;
 
         for (int i = 0; i < army.formList.size(); i++) {
             Form form = army.formList.get(i);
@@ -147,14 +150,14 @@ public class Calculator {
             return 0;
         }
 
-        int d = hits * army.numLessers * (100 - army.lesser.DF) / (totalSize * 100);
+        double d = hits * army.numLessers * (100 - army.lesser.DF) / (totalSize * 100);
         if (d > army.numLessers) {
             d = army.numLessers;
         }
 
         System.out.println("eDamage - lessers: " + d);
 
-        totalDamage = d;
+        totalDamage = (int) d;
         army.numLessers -= d;
 
         for (int i = 0; i < army.formList.size(); i++) {
@@ -189,7 +192,7 @@ public class Calculator {
         }
 
 
-        for (var i = 0; i < hits; i++) {
+        for (int i = 0; i < hits; i++) {
             target = randomInt(1, totalSize);
 
             // damage lessers
@@ -201,7 +204,8 @@ public class Calculator {
             } else // damage forms
             {
                 target -= oldNumLessers;
-                Form f = army.formList.get(i);
+                int randomForm = (int) randomInt(0, army.formList.size()-1); //random form from no of forms
+                Form f = army.formList.get(randomForm); //not sure this works - wonder what logic to select form to hit should be. Should probably go with random form to hit
 
                 while (target > f.size) {
                     target -= f.size;
@@ -241,13 +245,12 @@ public class Calculator {
             }
         }
         //total POTENTIAL hits
-        totalHits = army.lesserHits;
+        totalHits = (int)army.lesserHits;
 
         for (int i = 0; i < army.formList.size(); i++) {
             army.formList.get(i).hits = 0;
             if (army.formList.get(i).HE > 0) {
-                //army.formList.get(i).hits = army.formList.get(i).AT * army.formList.get(i).OF / 100;
-                for (i = 0; i < army.formList.get(i).AT; i++) {
+                for (int x = 0; x < army.formList.get(i).AT; x++) {
                     if (randomInt(1, 100) <= army.formList.get(i).OF) {
                         army.formList.get(i).hits++;
                     }
@@ -358,6 +361,14 @@ public class Calculator {
 
             System.out.println("Calculating ... " + " (player1.lesserHits : " + player1.lesserHits + " player2.lesserHits : " + player2.lesserHits + ")  Run # " + (run + 1) + "  Round # " + rounds);
 
+            // exit in a deadlock
+            if (rounds > 30000) {
+                System.out.println("Exiting loop after 300000 rounds");
+                extraInfo = "\nExiting loop after " + rounds + " rounds. Correct results could not be calculated du to deadlock.";
+                break;
+            }
+
+
             if (spell.equals("Battery Club (65)") && rounds <= 5) {
                 player1.lesserHits = 0;
                 player2.lesserHits = 0;
@@ -405,16 +416,16 @@ public class Calculator {
             //lessers attack
             tripleFormDamage = (spell.equals("Axe of Nergal (40)") && player1.IsSpellCaster);
             if (battleType.equals("calculated")) {
-                player1.furyGained += eDamage(player2, player1.lesserHits, tripleFormDamage);
+                player1.furyGained += eDamage(player2, (int)player1.lesserHits, tripleFormDamage);
             } else {
-                player1.furyGained += sDamage(player2, player1.lesserHits, tripleFormDamage);
+                player1.furyGained += sDamage(player2, (int)player1.lesserHits, tripleFormDamage);
             }
 
             tripleFormDamage = (spell.equals("Axe of Nergal (40)") && player2.IsSpellCaster);
             if (battleType.equals("calculated")) {
-                player2.furyGained += eDamage(player1, player2.lesserHits, tripleFormDamage);
+                player2.furyGained += eDamage(player1, (int)player2.lesserHits, tripleFormDamage);
             } else {
-                player2.furyGained += sDamage(player1, player2.lesserHits, tripleFormDamage);
+                player2.furyGained += sDamage(player1, (int)player2.lesserHits, tripleFormDamage);
             }
 
             tripleFormDamage = false;
@@ -424,14 +435,6 @@ public class Calculator {
             if (spell.equals("Garanapult (30)")) {
                 //SCArmy.formList.size = SCArmy.formList.HE;
                 newForm.size = newForm.HE;
-
-                // exit in a deadlock
-                if (rounds > 30000) {
-                    System.out.println("Exiting loop after 30000 rounds");
-                    extraInfo = "Exiting loop after 30000 rounds. Correct result not calculated.";
-                    break;
-                }
-
             }
         }
         // if both armies are completely eliminated, defender wins by default
@@ -441,7 +444,7 @@ public class Calculator {
             taResult.setText("");
             taResult.append("Results:\n");
             taResult.append("Winner: " + winningArmy.name + " (" + rounds + " rounds)\n");
-            taResult.append(winningArmy.numLessers + " - " + winningArmy.lesser.name + "\n");
+            taResult.append((int)winningArmy.numLessers + " - " + winningArmy.lesser.name + "\n");
             for (int x = 0; x < winningArmy.formList.size(); x++) {
                 if (winningArmy.formList.get(x).HE > 0) {
                     taResult.append(winningArmy.formList.get(x).name + " (" + winningArmy.formList.get(x).HE + ") experience earned: " + winningArmy.formList.get(x).XP + "\n");
@@ -452,9 +455,9 @@ public class Calculator {
             taResult.append(extraInfo);
             // statistical
         } else {
-            attack_ave_fury = player1.furyGained;
-            defend_ave_fury = player2.furyGained;
-            ave_rounds = rounds;
+            attack_ave_fury += player1.furyGained;
+            defend_ave_fury += player2.furyGained;
+            ave_rounds += rounds;
         }
 
         // clean up
@@ -462,30 +465,24 @@ public class Calculator {
     }
 
     public void calcStat(int noRuns, String spellCaster, String spell, int P1LesserLevel, int P2LesserLevel, ArrayList<Form> Army1Form, ArrayList<Form> Army2Form, int army1Lessers, int army2Lessers, boolean P1fortChecked, boolean P2fortChecked, JTextArea taResult, String battleType) {
-        int attacker_win = 0;
-        int defender_win = 0;
+        double attacker_win = 0;
+        double defender_win = 0;
         String winningArmy;
 
         for (int run = 0; run < noRuns; run++) {
             winningArmy = fight(spellCaster, spell, P1LesserLevel, P2LesserLevel, Army1Form, Army2Form, army1Lessers, army2Lessers, P1fortChecked, P2fortChecked, taResult, battleType);
-            if (winningArmy == "Player 1") {
+            if (winningArmy.equals("Player 1")) {
                 attacker_win++;
             } else {
                 defender_win++;
             }
         }
         ave_rounds = ave_rounds / noRuns;
-        //try {
         attack_ave_fury = attack_ave_fury / noRuns;
         defend_ave_fury = defend_ave_fury / noRuns;
-        attacker_win = attacker_win / noRuns * 100;
-        defender_win = defender_win / noRuns * 100;
-       /* } catch (Exception e) {
-            attack_ave_fury = Integer.parseInt(String.valueOf((attack_ave_fury / noRuns)));
-            defend_ave_fury = Integer.parseInt(String.valueOf((defend_ave_fury / noRuns)));
-            attacker_win = Integer.parseInt(String.valueOf((attacker_win / noRuns) * 100));
-            defender_win = Integer.parseInt(String.valueOf((defender_win / noRuns) * 100));
-        }*/
+        attacker_win = (attacker_win / noRuns) * 100;
+        defender_win = (defender_win / noRuns) * 100;
+
 
         taResult.setText("");
         taResult.append("Number of Runs: " + noRuns + "\n");
@@ -497,6 +494,11 @@ public class Calculator {
         taResult.append("DEFENDER WIN PCNT: " + defender_win + "\n");
         taResult.append("Defender Avg Fury: " + defend_ave_fury + "\n");
 
+        // reset global variables
+        run = 0;
+        ave_rounds = 0;
+        attack_ave_fury = 0;
+        defend_ave_fury = 0;
     }
 
 }

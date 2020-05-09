@@ -6,12 +6,12 @@ import java.util.List;
 
 public class Army {
     String name;
-    int numLessers = 0;
+    double numLessers = 0; // needed to be double for calc reasons
     int lesserLevel = 0;
     boolean IsSpellCaster = false;
     ArrayList<Form> formList;
     Lesser lesser;
-    int lesserHits = 0;
+    double lesserHits = 0;
     int furyGained = 0;
 
     public Army(int numLessers, int lesserLevel, ArrayList<Form> formList, boolean spellCaster, String name) {
