@@ -41,33 +41,59 @@ public class MainForm {
     private JComboBox cbCalcTyoe;
 
 
+
+
     public MainForm() {
         pnlContainer.setPreferredSize(new Dimension(750, 450));
-        ddForm1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                JComboBox<String> combo = (JComboBox<String>) actionEvent.getSource();
-                String selectedForm = (String) combo.getSelectedItem();
-                System.out.println("choice: " + selectedForm);
 
-                if (selectedForm.equals("Black Dragon")) {
-                    tfHealth1.setText("200");
-                } else if (selectedForm.equals("Colossa")) {
-                    tfHealth1.setText("300");
-                } else if (selectedForm.equals("Amber Dragon")) {
-                    tfHealth1.setText("180");
-                } else if (selectedForm.equals("Iron Hulk")) {
-                    tfHealth1.setText("250");
-                } else if (selectedForm.equals("Magma Demon")) {
-                    tfHealth1.setText("75");
-                } else if (selectedForm.equals("Wooden")) {
-                    tfHealth1.setText("100");
-                } else if (selectedForm.equals("select")) {
-                    tfHealth1.setText("0");
-                }
 
+        ddForm1.setName("ddForm1");
+        ddForm2.setName("ddForm2");
+        ddForm3.setName("ddForm3");
+        ddForm1_2.setName("ddForm1_2");
+        ddForm2_2.setName("ddForm2_2");
+        ddForm3_2.setName("ddForm3_2");
+
+        ActionListener listener = actionEvent -> {
+            JComboBox<String> combo = (JComboBox<String>) actionEvent.getSource();
+            String selectedForm = (String) combo.getSelectedItem();
+            System.out.println("choice: " + selectedForm);
+            System.out.println("dropdown: " + combo.getName());
+
+            JTextField tfHealth;
+            switch (combo.getName()) {
+                case "ddForm1":
+                    tfHealth = tfHealth1;
+                    break;
+                case "ddForm2":
+                    tfHealth = tfHealth2;
+                    break;
+                case "ddForm3":
+                    tfHealth = tfHealth3;
+                    break;
+                case "ddForm1_2":
+                    tfHealth = tfHealth1_2;
+                    break;
+                case "ddForm2_2":
+                    tfHealth = tfHealth2_2;
+                    break;
+                case "ddForm3_2":
+                    tfHealth = tfHealth3_2;
+                    break;
+                default:
+                    tfHealth = tfHealth1;
+                    break;
             }
-        });
+            setFormHealth(selectedForm, tfHealth);
+
+        };
+
+        ddForm1.addActionListener(listener);
+        ddForm2.addActionListener(listener);
+        ddForm3.addActionListener(listener);
+        ddForm1_2.addActionListener(listener);
+        ddForm2_2.addActionListener(listener);
+        ddForm3_2.addActionListener(listener);
 
 
         fightButton.addActionListener(new ActionListener() {
@@ -146,4 +172,32 @@ public class MainForm {
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
+
+    private void setFormHealth(String formName, JTextField tfHealth)
+    {
+        switch (formName) {
+            case "Black Dragon":
+                tfHealth.setText("200");
+                break;
+            case "Colossa":
+                tfHealth.setText("300");
+                break;
+            case "Amber Dragon":
+                tfHealth.setText("180");
+                break;
+            case "Iron Hulk":
+                tfHealth.setText("250");
+                break;
+            case "Magma Demon":
+                tfHealth.setText("75");
+                break;
+            case "Wooden":
+                tfHealth.setText("100");
+                break;
+            case "Select":
+                tfHealth.setText("0");
+                break;
+        }
+    }
+
 }
