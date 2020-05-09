@@ -31,12 +31,12 @@
             <properties>
               <autoscrolls value="false"/>
               <background color="-6123151"/>
-              <enabled value="false"/>
+              <enabled value="true"/>
               <foreground color="-1"/>
             </properties>
             <border type="none" title="Player one" title-position="1">
               <font/>
-              <title-color color="-1"/>
+              <title-color color="-461337"/>
               <color color="-1"/>
             </border>
             <children>
@@ -304,11 +304,12 @@
               </component>
             </children>
           </grid>
-          <grid id="b546" binding="pnlPlayer2" layout-manager="GridLayoutManager" row-count="6" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="5" vgap="5">
+          <grid id="b546" binding="pnlPlayerTwo" layout-manager="GridLayoutManager" row-count="6" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="5" vgap="5">
             <margin top="2" left="2" bottom="2" right="2"/>
             <constraints border-constraint="East"/>
             <properties>
               <background color="-461337"/>
+              <enabled value="true"/>
               <foreground color="-1"/>
             </properties>
             <border type="none" title="Player two" title-position="1">

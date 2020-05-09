@@ -36,7 +36,7 @@ public class MainForm {
     private JTextField tfHealth2_2;
     private JTextField tfHealth3_2;
     private JPanel panelBorder;
-    private JPanel pnlPlayer2;
+    private JPanel pnlPlayerTwo;
     private JLabel lblBattleType;
     private JComboBox cbCalcTyoe;
 
