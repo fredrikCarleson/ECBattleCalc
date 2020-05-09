@@ -2,15 +2,15 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.carleson.battlecalc.MainForm">
   <grid id="27dc6" binding="pnlContainer" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
     <constraints>
-      <xy x="48" y="14" width="781" height="519"/>
+      <xy x="48" y="14" width="819" height="696"/>
     </constraints>
     <properties>
       <autoscrolls value="true"/>
-      <background color="-16777216"/>
-      <minimumSize width="699" height="500"/>
-      <preferredSize width="699" height="510"/>
+      <background color="-6123151"/>
+      <minimumSize width="800" height="600"/>
+      <preferredSize width="800" height="600"/>
     </properties>
-    <border type="bevel-lowered" title="Evil Carles Battle Calculator" title-position="1">
+    <border type="etched" title="Evil Carles Battle Calculator" title-justification="1" title-position="1">
       <font name="Cooper Black" size="18"/>
       <title-color color="-131249"/>
       <color color="-44657"/>
@@ -18,7 +18,9 @@
     <children>
       <grid id="7fb5e" binding="panelBorder" layout-manager="BorderLayout" hgap="3" vgap="3">
         <constraints/>
-        <properties/>
+        <properties>
+          <background color="-6123151"/>
+        </properties>
         <border type="none">
           <title-color color="-1"/>
         </border>
@@ -28,10 +30,13 @@
             <constraints border-constraint="West"/>
             <properties>
               <autoscrolls value="false"/>
-              <background color="-1906433"/>
+              <background color="-6123151"/>
+              <enabled value="false"/>
               <foreground color="-1"/>
             </properties>
-            <border type="none" title="Player one">
+            <border type="none" title="Player one" title-position="1">
+              <font/>
+              <title-color color="-1"/>
               <color color="-1"/>
             </border>
             <children>
@@ -200,10 +205,11 @@
             <margin top="2" left="2" bottom="2" right="2"/>
             <constraints border-constraint="South"/>
             <properties>
-              <background color="-13586689"/>
+              <background color="-6123151"/>
             </properties>
-            <border type="none" title="Results">
+            <border type="none" title="Results" title-position="1">
               <font/>
+              <title-color color="-1"/>
             </border>
             <children>
               <component id="177bd" class="javax.swing.JComboBox" binding="ddCastBy">
@@ -302,10 +308,10 @@
             <margin top="2" left="2" bottom="2" right="2"/>
             <constraints border-constraint="East"/>
             <properties>
-              <background color="-43187"/>
+              <background color="-461337"/>
               <foreground color="-1"/>
             </properties>
-            <border type="none" title="Player two">
+            <border type="none" title="Player two" title-position="1">
               <color color="-1"/>
             </border>
             <children>
@@ -468,6 +474,38 @@
                   <text value="Fort?"/>
                 </properties>
               </component>
+            </children>
+          </grid>
+          <grid id="dd82a" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="10" right="0"/>
+            <constraints border-constraint="North"/>
+            <properties>
+              <background color="-6123151"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="43f20" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <horizontalAlignment value="2"/>
+                  <horizontalTextPosition value="2"/>
+                  <icon value="com/carleson/battlecalc/Resources/EvilCarle2.png"/>
+                  <text value=""/>
+                  <verticalAlignment value="1"/>
+                </properties>
+              </component>
+              <hspacer id="bd308">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <vspacer id="f98c8">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
             </children>
           </grid>
         </children>

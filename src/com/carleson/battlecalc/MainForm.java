@@ -44,7 +44,7 @@ public class MainForm {
 
 
     public MainForm() {
-        pnlContainer.setPreferredSize(new Dimension(750, 450));
+        pnlContainer.setPreferredSize(new Dimension(800, 600));
 
 
         ddForm1.setName("ddForm1");
