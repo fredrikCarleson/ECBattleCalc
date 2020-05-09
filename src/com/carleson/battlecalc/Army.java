@@ -11,7 +11,6 @@ public class Army {
     Lesser lesser;
     double lesserHits = 0;
     double furyGained = 0;
-    double wins = 0;
 
     public Army(int numLessers, int lesserLevel, ArrayList<Form> formList, boolean spellCaster, String name) {
         this.numLessers = numLessers;
@@ -24,7 +23,7 @@ public class Army {
 
     public void removeForm(String formName) {
         for (int i = 0; i < formList.size(); i++) {
-            if (formList.get(i).name==formName)
+            if (formList.get(i).name.equals(formName))
             {
                 formList.remove(i);
             }

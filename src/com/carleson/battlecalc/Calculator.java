@@ -100,22 +100,19 @@ public class Calculator {
     }
 
     public void eAttack(@NotNull Army army) {
-        int totalHits;
         army.lesserHits = 0;
 
         if (army.numLessers > 0) {
             // needed to add rounding in the case with calcs with low numbers suchs as 2 lessers
-            army.lesserHits = (int)Math.round(army.numLessers * army.lesser.OF / 100)* army.lesser.ATT;
+            army.lesserHits = (int) Math.round(army.numLessers * army.lesser.OF / 100) * army.lesser.ATT;
         }
-        totalHits = (int)army.lesserHits;
-        System.out.println("eAttack - lesserHits: " + army.lesserHits);
 
+        System.out.println("eAttack - lesserHits: " + army.lesserHits);
 
         for (int i = 0; i < army.formList.size(); i++) {
             army.formList.get(i).hits = 0;
             if (army.formList.get(i).HE > 0) {
                 army.formList.get(i).hits = army.formList.get(i).AT * army.formList.get(i).OF / 100;
-                totalHits += army.formList.get(i).hits;
                 System.out.println("eAttack - " + army.formList.get(i).name + " " + army.formList.get(i).hits);
             }
         }
@@ -123,8 +120,8 @@ public class Calculator {
     }
 
 
-    public int armySize(Army army) {
-        int totalSize = (int)army.numLessers;
+    public int armySize(@NotNull Army army) {
+        int totalSize = (int) army.numLessers;
 
         for (int i = 0; i < army.formList.size(); i++) {
             Form form = army.formList.get(i);
@@ -203,7 +200,7 @@ public class Calculator {
             } else // damage forms
             {
                 target -= oldNumLessers;
-                int randomForm = (int) randomInt(0, army.formList.size()-1); //random form from no of forms
+                int randomForm = (int) randomInt(0, army.formList.size() - 1); //random form from no of forms
                 Form f = army.formList.get(randomForm); //not sure this works - wonder what logic to select form to hit should be. Should probably go with random form to hit
 
                 while (target > f.size) {
@@ -235,7 +232,6 @@ public class Calculator {
     }
 
     public void sAttack(Army army) {
-        int totalHits = 0;
         army.lesserHits = 0;
 
         for (int i = 0; i < army.numLessers * army.lesser.ATT; i++) {
@@ -243,8 +239,6 @@ public class Calculator {
                 army.lesserHits++;
             }
         }
-        //total POTENTIAL hits
-        totalHits = (int)army.lesserHits;
 
         for (int i = 0; i < army.formList.size(); i++) {
             army.formList.get(i).hits = 0;
@@ -254,7 +248,6 @@ public class Calculator {
                         army.formList.get(i).hits++;
                     }
                 }
-                totalHits += army.formList.get(i).hits;
             }
         }
     }
@@ -396,34 +389,34 @@ public class Calculator {
             //player 1
             for (int x = 0; x < player1.formList.size(); x++) {
                 if (battleType.equals("calculated")) {
-                    player1.formList.get(x).XP += eDamage(player2,  player1.formList.get(x).hits, false); //should be form hits and not lesser hits
+                    player1.formList.get(x).XP += eDamage(player2, player1.formList.get(x).hits, false); //should be form hits and not lesser hits
                 } else {
-                    player1.formList.get(x).XP += sDamage(player2,  player1.formList.get(x).hits, false); //should be form hits and not lesser hits
+                    player1.formList.get(x).XP += sDamage(player2, player1.formList.get(x).hits, false); //should be form hits and not lesser hits
                 }
             }
 
             //player 2
             for (int x = 0; x < player2.formList.size(); x++) {
                 if (battleType.equals("calculated")) {
-                    player2.formList.get(x).XP += eDamage(player1,  player2.formList.get(x).hits, false);
+                    player2.formList.get(x).XP += eDamage(player1, player2.formList.get(x).hits, false);
                 } else {
-                    player2.formList.get(x).XP += sDamage(player1,  player2.formList.get(x).hits, false);
+                    player2.formList.get(x).XP += sDamage(player1, player2.formList.get(x).hits, false);
                 }
             }
 
             //lessers attack
             tripleFormDamage = (spell.equals("Axe of Nergal (40)") && player1.IsSpellCaster);
             if (battleType.equals("calculated")) {
-                player1.furyGained += eDamage(player2, (int)player1.lesserHits, tripleFormDamage);
+                player1.furyGained += eDamage(player2, (int) player1.lesserHits, tripleFormDamage);
             } else {
-                player1.furyGained += sDamage(player2, (int)player1.lesserHits, tripleFormDamage);
+                player1.furyGained += sDamage(player2, (int) player1.lesserHits, tripleFormDamage);
             }
 
             tripleFormDamage = (spell.equals("Axe of Nergal (40)") && player2.IsSpellCaster);
             if (battleType.equals("calculated")) {
-                player2.furyGained += eDamage(player1, (int)player2.lesserHits, tripleFormDamage);
+                player2.furyGained += eDamage(player1, (int) player2.lesserHits, tripleFormDamage);
             } else {
-                player2.furyGained += sDamage(player1, (int)player2.lesserHits, tripleFormDamage);
+                player2.furyGained += sDamage(player1, (int) player2.lesserHits, tripleFormDamage);
             }
 
             tripleFormDamage = false;
@@ -442,14 +435,14 @@ public class Calculator {
             taResult.setText("");
             taResult.append("Results:\n");
             taResult.append("Winner: " + winningArmy.name + " (" + rounds + " rounds)\n");
-            taResult.append((int)winningArmy.numLessers + " - " + winningArmy.lesser.name + "\n");
+            taResult.append((int) winningArmy.numLessers + " - " + winningArmy.lesser.name + "\n");
             for (int x = 0; x < winningArmy.formList.size(); x++) {
                 if (winningArmy.formList.get(x).HE > 0) {
-                    taResult.append(winningArmy.formList.get(x).name + " (" + (int)winningArmy.formList.get(x).HE + ") experience earned: " + (int)winningArmy.formList.get(x).XP + "\n");
+                    taResult.append(winningArmy.formList.get(x).name + " (" + (int) winningArmy.formList.get(x).HE + ") experience earned: " + (int) winningArmy.formList.get(x).XP + "\n");
                 }
             }
-            taResult.append(player1.name + " gained " + (int)player1.furyGained + " fury\n");
-            taResult.append(player2.name + " gained " + (int)player2.furyGained + " fury\n");
+            taResult.append(player1.name + " gained " + (int) player1.furyGained + " fury\n");
+            taResult.append(player2.name + " gained " + (int) player2.furyGained + " fury\n");
             taResult.append(extraInfo);
             // statistical
         } else {
@@ -469,13 +462,17 @@ public class Calculator {
 
         ArrayList<Double> health1 = new ArrayList<>();
         ArrayList<Double> health2 = new ArrayList<>();
+        ArrayList<Double> size1 = new ArrayList<>();
+        ArrayList<Double> size2 = new ArrayList<>();
 
-        for (int x = 0; x < Army1Form.size(); x++) {
-            health1.add(Army1Form.get(x).HE);
+        for (Form form : Army1Form) {
+            health1.add(form.HE);
+            size1.add(form.size);
         }
 
-        for (int x = 0; x < Army2Form.size(); x++) {
-            health2.add(Army2Form.get(x).HE);
+        for (Form form : Army2Form) {
+            health2.add(form.HE);
+            size2.add(form.size);
         }
 
         for (int run = 0; run < noRuns; run++) {
@@ -483,12 +480,23 @@ public class Calculator {
             // loop through forms and set health and xp to original values
             for (int x = 0; x < Army1Form.size(); x++) {
                 Army1Form.get(x).HE = health1.get(x);
+                Army1Form.get(x).hits = 0;
+                Army1Form.get(x).size = size1.get(x);;
             }
             for (int x = 0; x < Army2Form.size(); x++) {
                 Army2Form.get(x).HE = health2.get(x);
+                Army2Form.get(x).hits = 0;
+                Army2Form.get(x).size = size2.get(x);
+
             }
 
             winningArmy = fight(spellCaster, spell, P1LesserLevel, P2LesserLevel, Army1Form, Army2Form, army1Lessers, army2Lessers, P1fortChecked, P2fortChecked, taResult, battleType);
+
+            System.out.println("battleType: " + battleType);
+            System.out.println("army1Lessers: " + army1Lessers);
+            System.out.println("army2Lessers: " + army2Lessers);
+            //System.out.println("army 1 form HE: " + Army1Form.get(0).HE);
+            //System.out.println("army 2 form HE: " + Army2Form.get(0).HE);
 
             if (winningArmy.equals("Player 1")) {
                 attacker_win++;
@@ -507,13 +515,13 @@ public class Calculator {
 
         taResult.setText("");
         taResult.append("Number of Runs: " + noRuns + "\n");
-        taResult.append("Average # of rounds: " + (int)ave_rounds + "\n");
+        taResult.append("Average # of rounds: " + (int) ave_rounds + "\n");
         taResult.append("\n");
         taResult.append("Player 1 WIN PCNT: " + attacker_win + "\n");
-        taResult.append("Player 1 Avg Fury: " + (int)attack_ave_fury + "\n");
+        taResult.append("Player 1 Avg Fury: " + (int) attack_ave_fury + "\n");
         taResult.append("\n");
         taResult.append("Player 2 WIN PCNT: " + defender_win + "\n");
-        taResult.append("Player 2 Avg Fury: " + (int)defend_ave_fury + "\n");
+        taResult.append("Player 2 Avg Fury: " + (int) defend_ave_fury + "\n");
 
         // reset global variables
         run = 0;

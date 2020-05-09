@@ -40,13 +40,8 @@ public class MainForm {
     private JLabel lblBattleType;
     private JComboBox cbCalcTyoe;
 
-
-
-
     public MainForm() {
         pnlContainer.setPreferredSize(new Dimension(800, 600));
-
-
         ddForm1.setName("ddForm1");
         ddForm2.setName("ddForm2");
         ddForm3.setName("ddForm3");
@@ -84,6 +79,7 @@ public class MainForm {
                     tfHealth = tfHealth1;
                     break;
             }
+            assert selectedForm != null;
             setFormHealth(selectedForm, tfHealth);
 
         };
@@ -151,14 +147,11 @@ public class MainForm {
                 } else {
                     calc.fight(spellCaster, spell, lesserLevel1, lesserLevel2, Army1Form, Army2Form, army1Lessers, army2Lessers, fortress1Checked, fortress2Checked, taResult, battleType);
                 }
-
-
             }
         });
 
 
     }
-
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("MainForm");
@@ -166,11 +159,6 @@ public class MainForm {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-    }
-
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 
     private void setFormHealth(String formName, JTextField tfHealth)
@@ -199,5 +187,4 @@ public class MainForm {
                 break;
         }
     }
-
 }
