@@ -1,18 +1,17 @@
 package com.carleson.battlecalc;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Army {
     String name;
-    double numLessers = 0; // needed to be double for calc reasons
-    int lesserLevel = 0;
-    boolean IsSpellCaster = false;
+    double numLessers; // needed to be double for calc reasons
+    int lesserLevel;
+    boolean IsSpellCaster;
     ArrayList<Form> formList;
     Lesser lesser;
     double lesserHits = 0;
-    int furyGained = 0;
+    double furyGained = 0;
+    double wins = 0;
 
     public Army(int numLessers, int lesserLevel, ArrayList<Form> formList, boolean spellCaster, String name) {
         this.numLessers = numLessers;

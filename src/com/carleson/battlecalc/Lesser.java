@@ -61,7 +61,7 @@ public class Lesser {
 
     public int getDefense(int lesserLevel)
     {
-        int DF = 0;
+        int DF;
         if (lesserLevel == CRUSADER) {
             DF = 30;
         } else if (lesserLevel == AMRA) {

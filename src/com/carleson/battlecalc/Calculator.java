@@ -99,7 +99,7 @@ public class Calculator {
         return Math.floor((high - low + 1) * x) + low;
     }
 
-    public int eAttack(@NotNull Army army) {
+    public void eAttack(@NotNull Army army) {
         int totalHits;
         army.lesserHits = 0;
 
@@ -120,7 +120,6 @@ public class Calculator {
             }
         }
 
-        return totalHits;
     }
 
 
@@ -142,7 +141,7 @@ public class Calculator {
     hits = how many hits the army got
     tripleFormDamage = if spell is in effect making lessers do triple damage
      */
-    public int eDamage(Army army, int hits, boolean tripleFormDamage) {
+    public int eDamage(Army army, double hits, boolean tripleFormDamage) {
         int totalSize = armySize(army);
         int totalDamage;
 
@@ -181,7 +180,7 @@ public class Calculator {
         return totalDamage;
     }
 
-    public int sDamage(Army army, int hits, boolean tripleFormDamage) {
+    public int sDamage(Army army, double hits, boolean tripleFormDamage) {
         int totalSize = armySize(army);
         int totalDamage = 0;
         double target;
@@ -235,7 +234,7 @@ public class Calculator {
         return totalDamage;
     }
 
-    public int sAttack(Army army) {
+    public void sAttack(Army army) {
         int totalHits = 0;
         army.lesserHits = 0;
 
@@ -258,7 +257,6 @@ public class Calculator {
                 totalHits += army.formList.get(i).hits;
             }
         }
-        return totalHits;
     }
 
 
@@ -398,18 +396,18 @@ public class Calculator {
             //player 1
             for (int x = 0; x < player1.formList.size(); x++) {
                 if (battleType.equals("calculated")) {
-                    player1.formList.get(x).XP += eDamage(player2, player1.formList.get(x).hits, false); //should be form hits and not lesser hits
+                    player1.formList.get(x).XP += eDamage(player2,  player1.formList.get(x).hits, false); //should be form hits and not lesser hits
                 } else {
-                    player1.formList.get(x).XP += sDamage(player2, player1.formList.get(x).hits, false); //should be form hits and not lesser hits
+                    player1.formList.get(x).XP += sDamage(player2,  player1.formList.get(x).hits, false); //should be form hits and not lesser hits
                 }
             }
 
             //player 2
             for (int x = 0; x < player2.formList.size(); x++) {
                 if (battleType.equals("calculated")) {
-                    player2.formList.get(x).XP += eDamage(player1, player2.formList.get(x).hits, false);
+                    player2.formList.get(x).XP += eDamage(player1,  player2.formList.get(x).hits, false);
                 } else {
-                    player2.formList.get(x).XP += sDamage(player1, player2.formList.get(x).hits, false);
+                    player2.formList.get(x).XP += sDamage(player1,  player2.formList.get(x).hits, false);
                 }
             }
 
@@ -447,11 +445,11 @@ public class Calculator {
             taResult.append((int)winningArmy.numLessers + " - " + winningArmy.lesser.name + "\n");
             for (int x = 0; x < winningArmy.formList.size(); x++) {
                 if (winningArmy.formList.get(x).HE > 0) {
-                    taResult.append(winningArmy.formList.get(x).name + " (" + winningArmy.formList.get(x).HE + ") experience earned: " + winningArmy.formList.get(x).XP + "\n");
+                    taResult.append(winningArmy.formList.get(x).name + " (" + (int)winningArmy.formList.get(x).HE + ") experience earned: " + (int)winningArmy.formList.get(x).XP + "\n");
                 }
             }
-            taResult.append(player1.name + " gained " + player1.furyGained + " fury\n");
-            taResult.append(player2.name + " gained " + player2.furyGained + " fury\n");
+            taResult.append(player1.name + " gained " + (int)player1.furyGained + " fury\n");
+            taResult.append(player2.name + " gained " + (int)player2.furyGained + " fury\n");
             taResult.append(extraInfo);
             // statistical
         } else {
@@ -469,12 +467,35 @@ public class Calculator {
         double defender_win = 0;
         String winningArmy;
 
+        ArrayList<Double> health1 = new ArrayList<>();
+        ArrayList<Double> health2 = new ArrayList<>();
+
+        for (int x = 0; x < Army1Form.size(); x++) {
+            health1.add(Army1Form.get(x).HE);
+        }
+
+        for (int x = 0; x < Army2Form.size(); x++) {
+            health2.add(Army2Form.get(x).HE);
+        }
+
         for (int run = 0; run < noRuns; run++) {
+
+            // loop through forms and set health and xp to original values
+            for (int x = 0; x < Army1Form.size(); x++) {
+                Army1Form.get(x).HE = health1.get(x);
+            }
+            for (int x = 0; x < Army2Form.size(); x++) {
+                Army2Form.get(x).HE = health2.get(x);
+            }
+
             winningArmy = fight(spellCaster, spell, P1LesserLevel, P2LesserLevel, Army1Form, Army2Form, army1Lessers, army2Lessers, P1fortChecked, P2fortChecked, taResult, battleType);
+
             if (winningArmy.equals("Player 1")) {
                 attacker_win++;
+                System.out.println("attacker wins: " + attacker_win);
             } else {
                 defender_win++;
+                System.out.println("Defender wins: " + defender_win);
             }
         }
         ave_rounds = ave_rounds / noRuns;
@@ -486,13 +507,13 @@ public class Calculator {
 
         taResult.setText("");
         taResult.append("Number of Runs: " + noRuns + "\n");
-        taResult.append("Average # of rounds: " + ave_rounds + "\n");
+        taResult.append("Average # of rounds: " + (int)ave_rounds + "\n");
         taResult.append("\n");
-        taResult.append("ATTACKER WIN PCNT: " + attacker_win + "\n");
-        taResult.append("Attacker Avg Fury: " + attack_ave_fury + "\n");
+        taResult.append("Player 1 WIN PCNT: " + attacker_win + "\n");
+        taResult.append("Player 1 Avg Fury: " + (int)attack_ave_fury + "\n");
         taResult.append("\n");
-        taResult.append("DEFENDER WIN PCNT: " + defender_win + "\n");
-        taResult.append("Defender Avg Fury: " + defend_ave_fury + "\n");
+        taResult.append("Player 2 WIN PCNT: " + defender_win + "\n");
+        taResult.append("Player 2 Avg Fury: " + (int)defend_ave_fury + "\n");
 
         // reset global variables
         run = 0;
