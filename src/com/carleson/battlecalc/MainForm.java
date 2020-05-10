@@ -39,6 +39,7 @@ public class MainForm {
     private JPanel pnlPlayerTwo;
     private JLabel lblBattleType;
     private JComboBox cbCalcTyoe;
+    private JLabel lblHeader;
 
     public MainForm() {
         pnlContainer.setPreferredSize(new Dimension(800, 600));
